@@ -439,6 +439,128 @@ export type Database = {
         }
         Relationships: []
       }
+      order_events: {
+        Row: {
+          actor_email: string | null
+          actor_role: string | null
+          created_at: string
+          event: string
+          id: string
+          metadata: Json
+          note: string | null
+          order_id: string
+        }
+        Insert: {
+          actor_email?: string | null
+          actor_role?: string | null
+          created_at?: string
+          event: string
+          id?: string
+          metadata?: Json
+          note?: string | null
+          order_id: string
+        }
+        Update: {
+          actor_email?: string | null
+          actor_role?: string | null
+          created_at?: string
+          event?: string
+          id?: string
+          metadata?: Json
+          note?: string | null
+          order_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_events_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      order_item_identifiers: {
+        Row: {
+          asset_tag: string | null
+          created_at: string
+          id: string
+          imei_1: string | null
+          imei_2: string | null
+          item_index: number
+          locked: boolean
+          notes: string | null
+          order_id: string
+          other_identifier: string | null
+          product_id: string | null
+          product_name: string
+          qty: number
+          serial_number: string | null
+          service_tag: string | null
+          updated_at: string
+          warranty: string | null
+          warranty_months: number | null
+          warranty_start: string | null
+        }
+        Insert: {
+          asset_tag?: string | null
+          created_at?: string
+          id?: string
+          imei_1?: string | null
+          imei_2?: string | null
+          item_index: number
+          locked?: boolean
+          notes?: string | null
+          order_id: string
+          other_identifier?: string | null
+          product_id?: string | null
+          product_name?: string
+          qty?: number
+          serial_number?: string | null
+          service_tag?: string | null
+          updated_at?: string
+          warranty?: string | null
+          warranty_months?: number | null
+          warranty_start?: string | null
+        }
+        Update: {
+          asset_tag?: string | null
+          created_at?: string
+          id?: string
+          imei_1?: string | null
+          imei_2?: string | null
+          item_index?: number
+          locked?: boolean
+          notes?: string | null
+          order_id?: string
+          other_identifier?: string | null
+          product_id?: string | null
+          product_name?: string
+          qty?: number
+          serial_number?: string | null
+          service_tag?: string | null
+          updated_at?: string
+          warranty?: string | null
+          warranty_months?: number | null
+          warranty_start?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_item_identifiers_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_item_identifiers_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       orders: {
         Row: {
           created_at: string
@@ -449,6 +571,7 @@ export type Database = {
           delivery_lat: number | null
           delivery_lng: number | null
           delivery_note: string | null
+          delivery_note_number: string | null
           fulfillment: Database["public"]["Enums"]["fulfillment_method"]
           id: string
           invoice_number: string | null
@@ -456,6 +579,12 @@ export type Database = {
           notes: string | null
           payment_status: Database["public"]["Enums"]["order_payment_status"]
           pickup_code: string | null
+          pickup_confirmed_at: string | null
+          pickup_picked_up_by: string | null
+          pickup_recipient_name: string | null
+          pickup_reference: string | null
+          pickup_signature: string | null
+          pickup_staff_name: string | null
           reservation_number: string | null
           status: Database["public"]["Enums"]["order_status"]
           subtotal: number
@@ -474,6 +603,7 @@ export type Database = {
           delivery_lat?: number | null
           delivery_lng?: number | null
           delivery_note?: string | null
+          delivery_note_number?: string | null
           fulfillment?: Database["public"]["Enums"]["fulfillment_method"]
           id?: string
           invoice_number?: string | null
@@ -481,6 +611,12 @@ export type Database = {
           notes?: string | null
           payment_status?: Database["public"]["Enums"]["order_payment_status"]
           pickup_code?: string | null
+          pickup_confirmed_at?: string | null
+          pickup_picked_up_by?: string | null
+          pickup_recipient_name?: string | null
+          pickup_reference?: string | null
+          pickup_signature?: string | null
+          pickup_staff_name?: string | null
           reservation_number?: string | null
           status?: Database["public"]["Enums"]["order_status"]
           subtotal?: number
@@ -499,6 +635,7 @@ export type Database = {
           delivery_lat?: number | null
           delivery_lng?: number | null
           delivery_note?: string | null
+          delivery_note_number?: string | null
           fulfillment?: Database["public"]["Enums"]["fulfillment_method"]
           id?: string
           invoice_number?: string | null
@@ -506,6 +643,12 @@ export type Database = {
           notes?: string | null
           payment_status?: Database["public"]["Enums"]["order_payment_status"]
           pickup_code?: string | null
+          pickup_confirmed_at?: string | null
+          pickup_picked_up_by?: string | null
+          pickup_recipient_name?: string | null
+          pickup_reference?: string | null
+          pickup_signature?: string | null
+          pickup_staff_name?: string | null
           reservation_number?: string | null
           status?: Database["public"]["Enums"]["order_status"]
           subtotal?: number
